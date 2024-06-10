@@ -41,8 +41,27 @@ function calculateTimeDifference() {
   document.getElementById('time-difference').innerText = `${Math.floor(timeDifference)} ${unit}`;
 }
 
+function setColors() {
+  const bgColor = document.getElementById('bgColor').value;
+  const textColor = document.getElementById('textColor').value;
+  const bodyElement = document.body;
+
+  if(bgColor === textColor) {
+    error.innerText = 'Please select two distinct colors';
+  } else {
+    error.innerText = '';
+    bodyElement.style.backgroundColor = bgColor;
+    bodyElement.style.color = textColor;
+  }
+
+}
+
 window.onload = function() {
   setDefaultDateTimes();
+
   document.getElementById('date1').addEventListener('input', calculateTimeDifference);
   document.getElementById('date2').addEventListener('input', calculateTimeDifference);
+
+  document.getElementById('bgColor').addEventListener('input', setColors);
+  document.getElementById('textColor').addEventListener('input', setColors);
 }
